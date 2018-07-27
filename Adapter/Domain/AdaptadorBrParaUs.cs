@@ -8,7 +8,7 @@ namespace Adapter.Domain
         public bool EntradaDeTomada { get; set; }
         public bool Luz { get; set; }
 
-        public IEntradaBrasileira Pluga(IEntradaAmericana entrada)
+        public void PlugarNo(IEntradaAmericana entrada)
         {
             if (entrada.Luz)
             {
@@ -16,8 +16,6 @@ namespace Adapter.Domain
             }
             entrada.EntradaDeTomada = true;
             Plugado = true;
-            var adapter = entrada as object;
-            return adapter as IEntradaBrasileira;
         }
     }
 }

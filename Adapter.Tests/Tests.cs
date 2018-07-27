@@ -59,7 +59,7 @@ namespace Adapter.Tests
             nobreak.LigarNa(energia);
             
             var adaptadorBrParaUs = new AdaptadorBrParaUs();
-            adaptadorBrParaUs.Pluga(nobreak);
+            adaptadorBrParaUs.PlugarNo(nobreak);
             
             Assert.AreEqual(true, adaptadorBrParaUs.Plugado);
             Assert.AreEqual(true, adaptadorBrParaUs.Luz);
@@ -93,10 +93,10 @@ namespace Adapter.Tests
             nobreak.LigarNa(energia);
             
             var adaptadorBrParaUs = new AdaptadorBrParaUs();
-            adaptadorBrParaUs.Pluga(nobreak);
+            adaptadorBrParaUs.PlugarNo(nobreak);
 
             var computador = new Computador();
-            computador.Pluga(adaptadorBrParaUs);
+            computador.PlugarNo(adaptadorBrParaUs);
             computador.Ligar();
             
             Assert.AreEqual(true, adaptadorBrParaUs.EntradaDeTomada);
@@ -116,7 +116,7 @@ namespace Adapter.Tests
             nobreak.LigarNa(energia);
             
             var adaptadorBrParaUs = new AdaptadorBrParaUs();
-            adaptadorBrParaUs.Pluga(nobreak);
+            adaptadorBrParaUs.PlugarNo(nobreak);
 
             var computador = new Computador();
             

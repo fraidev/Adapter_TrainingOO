@@ -4,5 +4,6 @@
     {
         bool Plugado { get; set; }
         bool Luz { get; set; }
+        void PlugarNo(IEntradaAmericana entrada);
     }
 }

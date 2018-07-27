@@ -6,10 +6,10 @@ namespace Adapter.Domain
     public class Computador:IPlugBrasileiro
     {
         public bool Plugado { get; set; }
-        public bool Luz { get; set; } 
+        public bool Luz { get; set; }
         public bool Ligado { get; set; } 
         
-        public void Pluga(IEntradaBrasileira entrada)
+        public void PlugarNo(IEntradaBrasileira entrada)
         {
             if (entrada.Luz) Luz = true;
             entrada.EntradaDeTomada = true;

@@ -5,9 +5,9 @@ namespace Adapter.Domain
 {
     public class Computador:IPlugBrasileiro
     {
-        public bool Plugado { get; set; } = false;
-        public bool Luz { get; set; } = false;
-        public bool Ligado { get; set; } = false;
+        public bool Plugado { get; set; }
+        public bool Luz { get; set; } 
+        public bool Ligado { get; set; } 
         
         public void Pluga(IEntradaBrasileira entrada)
         {

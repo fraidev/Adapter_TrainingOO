@@ -5,12 +5,12 @@ namespace Adapter.Domain
     public class AdaptadorBrParaUs:IEntradaBrasileira, IPlugAmericano
     {
         public bool Plugado { get; set; } 
-        public bool EntradaDeTomada { get; set; } = false;
+        public bool EntradaDeTomada { get; set; }
         public bool Luz { get; set; }
 
         public IEntradaBrasileira Pluga(IEntradaAmericana entrada)
         {
-            if (entrada.EntregaLuz)
+            if (entrada.Luz)
             {
                 Luz = true;
             }

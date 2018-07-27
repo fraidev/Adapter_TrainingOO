@@ -35,7 +35,7 @@ namespace Adapter.Tests
             var nobreak = new Nobreak();
             nobreak.LigarNa(energia);
 
-            Assert.AreEqual(true, nobreak.EntregaLuz);
+            Assert.AreEqual(true, nobreak.Luz);
         }
         [Test]
         public void O_Nobreak_Deve_Continuar_Desligado_Se_Nao_Tiver_Luz_Na_Energia()
@@ -45,7 +45,7 @@ namespace Adapter.Tests
             var nobreak = new Nobreak();
             nobreak.LigarNa(energia);
 
-            Assert.AreEqual(false, nobreak.EntregaLuz);
+            Assert.AreEqual(false, nobreak.Luz);
         }
         
         //Adaptador
@@ -84,7 +84,7 @@ namespace Adapter.Tests
         
         // Computador
         [Test]
-        public void O_Computador()
+        public void O_Computador_Ligado_Funciona()
         {
             var energia = new Energia();
             energia.LigarLuz();
@@ -104,6 +104,27 @@ namespace Adapter.Tests
             Assert.AreEqual(true, computador.Ligado);
             Assert.AreEqual(true, computador.Luz);
             Assert.AreEqual(7, computador.Calcula(2,5));
+        }
+        
+        [Test]
+        public void O_Computador_Desligado_Nao_funciona()
+        {
+            var energia = new Energia();
+            energia.LigarLuz();
+            
+            var nobreak = new Nobreak();
+            nobreak.LigarNa(energia);
+            
+            var adaptadorBrParaUs = new AdaptadorBrParaUs();
+            adaptadorBrParaUs.Pluga(nobreak);
+
+            var computador = new Computador();
+            
+            Assert.AreEqual(false, adaptadorBrParaUs.EntradaDeTomada);
+            Assert.AreEqual(false, computador.Plugado);
+            Assert.AreEqual(false, computador.Ligado);
+            Assert.AreEqual(false, computador.Luz);
+            Assert.AreEqual(0, computador.Calcula(2,5));
         }
     }
 }

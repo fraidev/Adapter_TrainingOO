@@ -7,14 +7,18 @@ namespace Adapter
     {
         static void Main(string[] args)
         {
+            var energia = new Energia();
+            energia.LigarLuz();
+            
             var nobreak = new Nobreak();
-            var computador = new Computador();
-
+            nobreak.LigarNa(energia);
+            
             var adaptadorBrParaUs = new AdaptadorBrParaUs();
             
-            computador.Pluga(adaptadorBrParaUs.Adaptar(nobreak));
-
-            Console.WriteLine("Hello World!");
+            var computador = new Computador();
+                
+            computador.Pluga(adaptadorBrParaUs.Pluga(nobreak));
+            
         }
     }
 }

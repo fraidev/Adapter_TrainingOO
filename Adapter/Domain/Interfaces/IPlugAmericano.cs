@@ -1,7 +1,8 @@
 ﻿namespace Adapter.Domain
 {
-    public interface IPlugBrasileiro
+    public interface IPlugAmericano
     {
         bool Plugado { get; set; }
+        bool Luz { get; set; }
     }
 }

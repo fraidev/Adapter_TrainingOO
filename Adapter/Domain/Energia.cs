@@ -14,7 +14,7 @@ namespace Adapter.Domain
         public void DesligarLuz()
         {
             Luz = false;
-            Console.WriteLine("A Luz da energia ligou");
+            Console.WriteLine("A Luz da energia Desligou");
         }
     }
 }

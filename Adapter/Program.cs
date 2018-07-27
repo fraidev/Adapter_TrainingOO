@@ -19,10 +19,9 @@ namespace Adapter
 
             var computador = new Computador();
             computador.PlugarNo(adaptadorBrParaUs);
-            computador.Ligar();
+            computador.LigarBotao();
 
-
-            computador.Calcula(2, 5);
+            Console.WriteLine(computador.Calcula(2, 5));
         }
     }
 }

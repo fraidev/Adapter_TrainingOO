@@ -6,29 +6,37 @@ namespace Adapter.Domain
     public class Computador:IPlugBrasileiro
     {
         public bool Plugado { get; set; }
-        public bool Luz { get; set; }
-        public bool Ligado { get; set; } 
+        public bool BotaoLigado { get; set; }
+        public Energia Energia { get; set; }
+
+        public Computador()
+        {
+            Energia = new Energia {Luz = false};
+        }
         
         public void PlugarNo(IEntradaBrasileira entrada)
         {
-            if (entrada.Luz) Luz = true;
+            if (entrada.Energia.Luz)
+            {
+                Energia = entrada.Energia;
+            }
             entrada.EntradaDeTomada = true;
             Plugado = true;
         }
 
-        public void Ligar()
+        public void LigarBotao()
         {
-            if(Luz) Ligado = true;
+            if(Energia.Luz) BotaoLigado = true;
         }
         
-        public void Desligar()
+        public void DesligarBotao()
         {
-            Ligado = false;
+            BotaoLigado = false;
         }
         
         public double Calcula(double a, double b)
         {
-            if (Ligado) return a + b;
+            if (BotaoLigado&&Energia.Luz) return a + b;
             return 0;
         }
     }

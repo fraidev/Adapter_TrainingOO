@@ -6,18 +6,18 @@ namespace Adapter.Domain
     public class Nobreak:IEntradaAmericana
     {
         public bool EntradaDeTomada { get; set; }
-        public bool Luz { get; set; }
+        public Energia Energia { get; set; }
 
         public void LigarNa(Energia energia)
         {
             if (energia.Luz)
             {
-                Luz = true;
+                Energia = energia;
                 Console.WriteLine("O Nobreak ligou!");}
             else
             {
-                Luz = false;
-                Console.WriteLine("O Nobreak ligou!");
+                Energia = energia;
+                Console.WriteLine("O Nao ligou Nobreak!");
             }
         }
     }

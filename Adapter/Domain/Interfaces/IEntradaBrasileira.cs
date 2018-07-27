@@ -3,6 +3,6 @@
     public interface IEntradaBrasileira
     {
         bool EntradaDeTomada { get; set; } 
-        bool Luz { get; set; }
+        Energia Energia { get; set; }
     }
 }

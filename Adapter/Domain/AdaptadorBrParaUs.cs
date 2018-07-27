@@ -6,13 +6,18 @@ namespace Adapter.Domain
     {
         public bool Plugado { get; set; } 
         public bool EntradaDeTomada { get; set; }
-        public bool Luz { get; set; }
+        public Energia Energia { get; set; }
+
+        public AdaptadorBrParaUs()
+        {
+            Energia = new Energia {Luz = false};
+        }
 
         public void PlugarNo(IEntradaAmericana entrada)
         {
-            if (entrada.Luz)
+            if (entrada.Energia.Luz)
             {
-                Luz = true;
+                Energia = entrada.Energia;
             }
             entrada.EntradaDeTomada = true;
             Plugado = true;

@@ -35,7 +35,7 @@ namespace Adapter.Tests
             var nobreak = new Nobreak();
             nobreak.LigarNa(energia);
 
-            Assert.AreEqual(true, nobreak.Luz);
+            Assert.AreEqual(true, nobreak.Energia.Luz);
         }
         [Test]
         public void O_Nobreak_Deve_Continuar_Desligado_Se_Nao_Tiver_Luz_Na_Energia()
@@ -45,7 +45,7 @@ namespace Adapter.Tests
             var nobreak = new Nobreak();
             nobreak.LigarNa(energia);
 
-            Assert.AreEqual(false, nobreak.Luz);
+            Assert.AreEqual(false, nobreak.Energia.Luz);
         }
         
         //Adaptador
@@ -62,7 +62,7 @@ namespace Adapter.Tests
             adaptadorBrParaUs.PlugarNo(nobreak);
             
             Assert.AreEqual(true, adaptadorBrParaUs.Plugado);
-            Assert.AreEqual(true, adaptadorBrParaUs.Luz);
+            Assert.AreEqual(true, adaptadorBrParaUs.Energia.Luz);
             Assert.AreEqual(false, adaptadorBrParaUs.EntradaDeTomada);
             Assert.AreEqual(true, nobreak.EntradaDeTomada);
         }
@@ -77,7 +77,7 @@ namespace Adapter.Tests
             var adaptadorBrParaUs = new AdaptadorBrParaUs();
             
             Assert.AreEqual(false, adaptadorBrParaUs.Plugado);
-            Assert.AreEqual(false, adaptadorBrParaUs.Luz);
+            Assert.AreEqual(false, adaptadorBrParaUs.Energia.Luz);
             Assert.AreEqual(false, adaptadorBrParaUs.EntradaDeTomada);
             Assert.AreEqual(false, nobreak.EntradaDeTomada);
         }
@@ -97,12 +97,11 @@ namespace Adapter.Tests
 
             var computador = new Computador();
             computador.PlugarNo(adaptadorBrParaUs);
-            computador.Ligar();
+            computador.LigarBotao();
             
             Assert.AreEqual(true, adaptadorBrParaUs.EntradaDeTomada);
             Assert.AreEqual(true, computador.Plugado);
-            Assert.AreEqual(true, computador.Ligado);
-            Assert.AreEqual(true, computador.Luz);
+            Assert.AreEqual(true, computador.BotaoLigado);
             Assert.AreEqual(7, computador.Calcula(2,5));
         }
         
@@ -122,8 +121,29 @@ namespace Adapter.Tests
             
             Assert.AreEqual(false, adaptadorBrParaUs.EntradaDeTomada);
             Assert.AreEqual(false, computador.Plugado);
-            Assert.AreEqual(false, computador.Ligado);
-            Assert.AreEqual(false, computador.Luz);
+            Assert.AreEqual(false, computador.BotaoLigado);
+            Assert.AreEqual(false, computador.Energia.Luz);
+            Assert.AreEqual(0, computador.Calcula(2,5));
+        }
+        [Test]
+        public void Se_Desligar_A_Energia_No_Final_Nada_Deve_Funcionar()
+        {
+            var energia = new Energia();
+            energia.LigarLuz();
+            
+            var nobreak = new Nobreak();
+            nobreak.LigarNa(energia);
+            
+            var adaptadorBrParaUs = new AdaptadorBrParaUs();
+            adaptadorBrParaUs.PlugarNo(nobreak);
+
+            var computador = new Computador();
+            computador.PlugarNo(adaptadorBrParaUs);
+            computador.LigarBotao();
+            
+            energia.DesligarLuz();
+
+            Assert.AreEqual(false, computador.Energia.Luz);
             Assert.AreEqual(0, computador.Calcula(2,5));
         }
     }
